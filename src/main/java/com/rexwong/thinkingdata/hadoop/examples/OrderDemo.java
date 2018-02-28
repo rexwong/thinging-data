@@ -1,4 +1,4 @@
-package com.rexwong.thinkingdata.mr;
+package com.rexwong.thinkingdata.hadoop.examples;
 
 import com.google.common.collect.Lists;
 import org.apache.hadoop.conf.Configuration;
