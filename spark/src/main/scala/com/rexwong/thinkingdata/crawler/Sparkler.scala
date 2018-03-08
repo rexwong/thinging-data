@@ -9,7 +9,7 @@ class CrawlPartition(rddId: Int, idx: Int, val baseURL: String) extends Partitio
   override def index: Int = ???
 }
 
-class CrawlRDD(baseURL: String, sc: SparkContext) extends RDD[X](sc, Nil) {
+class CrawlRDD[X](baseURL: String, sc: SparkContext) extends RDD[X](sc, Nil) {
 
   override protected def getPartitions: Array[CrawlPartition] = {
     val partitions = new ArrayBuffer[CrawlPartition]
@@ -22,15 +22,17 @@ class CrawlRDD(baseURL: String, sc: SparkContext) extends RDD[X](sc, Nil) {
     val baseUrl = p.baseURL
 
     new Iterator[X] {
-      var nextURL = _
+      var nextURL = ""
 
       override def hasNext: Boolean = {
         //logic to find next url if has one, fill in nextURL and return true
         // else false
+        false
       }
 
-      override def next(): X = {
+      override def next(): Boolean = {
         //logic to crawl the web page nextURL and return the content in X
+        false
       }
     }
   }
@@ -40,6 +42,7 @@ object Sparkler {
   def main(args: Array[String]) {
     val sparkConf = new SparkConf().setAppName("Crawler")
     val sc = new SparkContext(sparkConf)
+
     val crdd = new CrawlRDD("baseURL", sc)
     crdd.saveAsTextFile("hdfs://path_here")
     sc.stop()
