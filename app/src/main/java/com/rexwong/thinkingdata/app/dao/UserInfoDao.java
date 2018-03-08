@@ -18,16 +18,6 @@ public class UserInfoDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public UserDetailInfo findUserDetailInfo(String userid) {
-        return null;
-    }
-
-    public UserDetailInfo loadUserDetailInfo(String userid) {
-        return jdbcTemplate.queryForObject(String.format(
-                "select countryCode,gender,qualityAuth from user_detail_info where uid=%s", userid),
-                new BeanPropertyRowMapper<>(UserDetailInfo.class));
-    }
-
     public String findUserFromRoom(String roomid) {
         return jdbcTemplate.queryForObject(
                 String.format("select id from room_live where roomid=%s", roomid),
