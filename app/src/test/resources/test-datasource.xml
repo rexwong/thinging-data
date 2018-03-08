@@ -29,13 +29,4 @@
         <property name="testOnReturn" value="false" />
         <property name="filters" value="stat,slf4j"/>
     </bean>
-
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" primary="true">
-        <property name="dataSource" ref="dataSource" />
-        <property name="mapperLocations" value="classpath*:mybatis/*.xml" />
-    </bean>
-
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" primary="true">
-        <constructor-arg index="0" ref="sqlSessionFactory"/>
-    </bean>
 </beans>

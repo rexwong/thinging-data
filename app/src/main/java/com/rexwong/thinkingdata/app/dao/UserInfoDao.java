@@ -30,7 +30,7 @@ public class UserInfoDao {
 
     public String findUserFromRoom(String roomid) {
         return jdbcTemplate.queryForObject(
-                String.format("select uid from user_room where roomid=%s", roomid),
+                String.format("select id from room_live where roomid=%s", roomid),
                 Long.class).toString();
     }
 
