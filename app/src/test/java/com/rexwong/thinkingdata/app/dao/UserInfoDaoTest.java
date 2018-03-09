@@ -15,6 +15,10 @@ public class UserInfoDaoTest {
 
     @Test
     public void findUserFromRoomTest() {
-        userInfoDao.findUserFromRoom("111");
+        try {
+            userInfoDao.findUserFromRoom("0");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
