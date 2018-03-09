@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="encoding" value="UTF-8"/>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/cc.log</file>
+        <Append>true</Append>
+        <prudent>false</prudent>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS}|%X{localIp}|%X{requestId}|%X{requestSeq}|^_^|uid:%X{uid}|clientIp:%X{_H_X-Forwarded-For}|deviceId:%X{deviceId}|^_^|[%t] %-5level %logger{50} %line - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/cc.log.%d{yyyy-MM-dd}.%i</fileNamePattern>>
+            <maxFileSize>256MB</maxFileSize>
+            <maxHistory>15</maxHistory>
+            <totalSizeCap>32GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS}|%X{localIp}|%X{requestId}|%X{requestSeq}|^_^|uid:%X{uid}|clientIp:%X{_H_X-Forwarded-For}|deviceId:%X{deviceId}|^_^|[%t] %-5level %logger{50} %line - %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--log4jdbc -->
+    <if condition='property("spring.profiles.active").equalsIgnoreCase("dev")'>
+        <then>
+            <logger name="jdbc.sqltiming" level="DEBUG">
+                <appender-ref ref="FILE"/>
+            </logger>
+        </then>
+        <else>
+            <logger name="jdbc.sqltiming" level="ERROR">
+                <appender-ref ref="FILE"/>
+            </logger>
+        </else>
+    </if>
+    <logger name="jdbc.sqlonly" level="OFF"/>
+    <logger name="jdbc.audit" level="OFF"/>
+    <logger name="jdbc.resultset" level="OFF"/>
+    <logger name="jdbc.connection" level="OFF"/>
+
+    <root level="INFO">
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

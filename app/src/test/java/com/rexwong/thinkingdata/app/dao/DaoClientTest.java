@@ -7,20 +7,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:test-dao.xml")
 @Ignore
-public class UserInfoDaoTest {
-
+public class DaoClientTest {
     @Resource
-    private UserInfoDao userInfoDao;
-
+    private DaoClient daoClient;
     @Test
-    public void findUserFromRoomTest() {
-        try {
-            userInfoDao.findUserFromRoom("0");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void httpTest(){
+        daoClient.httpClient("MSL");
     }
 }

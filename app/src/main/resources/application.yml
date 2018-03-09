@@ -1,0 +1,78 @@
+logging:
+  config:
+    classpath: logback.xml
+spring:
+  datasource:
+    maximum-pool-size: 10
+    driver-class-name: com.mysql.jdbc.Driver
+    auto-commit: true
+    connection-test-query: SELECT 1
+    connectionTimeout: 2000
+    maxLifetime: 60000
+    initialSize: 5
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 60000
+  mvc:
+    favicon:
+      enabled: false
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: data-app
+  zipkin:
+    enabled: false
+  activemq:
+    in-memory: true
+    pool:
+      enabled: false
+  httpclient:
+    timeout:
+      connect: 5000
+      read: 5000
+    connection:
+      pool:
+        maxTotal: 1000
+        defaultMaxPerRoute: 1000
+    retry:
+      times: 1
+  hessain:
+    timeout:
+      connect: 3000
+      read: 3000
+endpoints:
+  enabled: true
+  autoconfig:
+    enabled: true
+  configprops:
+    enabled: true
+  dump:
+    enabled: true
+  health:
+    enabled: true
+  info:
+    enabled: true
+  metrics:
+    enabled: true
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+  env:
+    enabled: true
+  mappings:
+    enabled: true
+  beans:
+    enabled: true
+server:
+  tomcat:
+    accesslog:
+      directory: logs
+      enabled: true
+      prefix: localhost_access_log
+      suffix: .log
+      pattern: "%A|%h|%m|%t|%D|&quot;%r&quot;|&quot;%{Referer}i&quot;|&quot;%{User-Agent}i&quot;|%s|%S|%b|%{X-Request-ID}i|%{begin:msec}t|%{end:msec}t"
+      rename-on-rotate: true
+
+
+
