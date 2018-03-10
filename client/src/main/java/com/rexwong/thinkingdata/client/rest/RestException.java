@@ -1,4 +1,4 @@
-package com.rexwong.thinkingdata.app.utils;
+package com.rexwong.thinkingdata.client.rest;
 
 import com.alibaba.fastjson.JSON;
 import org.springframework.http.HttpStatus;

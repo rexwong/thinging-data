@@ -1,4 +1,4 @@
-package com.rexwong.thinkingdata.app.config;
+package com.rexwong.thinkingdata.client.config;
 
 import org.apache.http.conn.HttpClientConnectionManager;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
@@ -50,19 +50,17 @@ public class HttpClientConfig {
         return factory;
     }
 
-    HttpClientBuilder getHttpClientBuilder(){
+    private HttpClientBuilder getHttpClientBuilder(){
         HttpClientConnectionManager manager = getConnectionManager();
         DefaultHttpRequestRetryHandler requestRetryHandler = new DefaultHttpRequestRetryHandler(retryTimes, false);
         return HttpClientBuilder.create().setConnectionManager(manager).setRetryHandler(requestRetryHandler);
     }
 
-    HttpClientConnectionManager getConnectionManager(){
+    private HttpClientConnectionManager getConnectionManager(){
         PoolingHttpClientConnectionManager poolManager = new PoolingHttpClientConnectionManager();
         poolManager.setMaxTotal(maxTotal);
         poolManager.setDefaultMaxPerRoute(defaultMaxPerRoute);
         return poolManager;
     }
-
-
 
 }

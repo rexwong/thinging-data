@@ -1,0 +1,17 @@
+spring:
+  httpclient:
+    timeout:
+      connect: 5000
+      read: 5000
+    connection:
+      pool:
+        maxTotal: 1000
+        defaultMaxPerRoute: 1000
+    retry:
+      times: 1
+server:
+  application: app-client
+  port: 8888
+
+
+

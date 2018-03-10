@@ -1,4 +1,4 @@
-package com.rexwong.thinkingdata.app.config;
+package com.rexwong.thinkingdata.client.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.SpringBootConfiguration;

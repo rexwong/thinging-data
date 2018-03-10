@@ -1,4 +1,4 @@
-package com.rexwong.thinkingdata.app.utils;
+package com.rexwong.thinkingdata.client.utils;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -9,6 +9,7 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriTemplate;
@@ -97,11 +98,13 @@ public class RestClientHelper {
         return expanded;
     }
 
-    public static <T> T extractingResponseJson(ObjectMapper objectMapper, ResponseEntity<String> response,
+    public static <T> T extractingResponseJson(ObjectMapper objectMapper,
+                                               ResponseEntity<String> response,
                                                TypeReference<? extends T> typeRefer,
                                                T defaults) {
+
         String json = response.getBody();
-        if (json == null){
+        if (json == null) {
             return defaults;
         }
         try {
