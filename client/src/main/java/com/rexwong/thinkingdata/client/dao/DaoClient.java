@@ -28,21 +28,16 @@ public class DaoClient {
 
     @Resource
     private RestTemplate restTemplate;
-    @Resource
-    private ObjectMapper objectMapper;
 
     public Area2CountryResult httpClient(String code) throws RestException {
-
-        ResponseEntity<String> response;
         try {
-            response = restTemplate.getForEntity(areaTocountry,String.class,code);
+            ResponseEntity<Area2CountryResult> responseEntity = restTemplate.getForEntity(areaTocountry,Area2CountryResult.class,code);
+            return responseEntity.getBody();
         } catch (Exception e) {
             log.error("Calling rest({}) error({})", RestClientHelper.getUrl(areaTocountry, code), e.getMessage());
             throw new RestException(e);
         }
-        return RestClientHelper.extractingResponseJson(objectMapper, response,
-                new TypeReference<Area2CountryResult>() {
-                }, null);
+
     }
     @Data
     @ToString
