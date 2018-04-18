@@ -12,8 +12,8 @@ public class HttpClientContoller {
     @Autowired
     DaoClient daoClient;
     @GetMapping(value = "/test")
-    public DaoClient.Area2CountryResult testArea(String regionCode){
-        DaoClient.Area2CountryResult data = daoClient.httpClient("MSL");
+    public Object testArea(String regionCode){
+        Object data = daoClient.httpClient("MSL");
         return data;
     }
 }

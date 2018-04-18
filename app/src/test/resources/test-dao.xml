@@ -24,12 +24,4 @@
             </bean>
         </constructor-arg>
     </bean>
-    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" >
-        <constructor-arg>
-            <bean class="org.springframework.http.client.SimpleClientHttpRequestFactory">
-                <property name="readTimeout" value="3000" />
-                <property name="connectTimeout" value="3000" />
-            </bean>
-        </constructor-arg>
-    </bean>
 </beans>

@@ -2,13 +2,13 @@ package com.rexwong.thinkingdata.app.controller.support;
 
 public class Result <T> {
 
-    private String code;
-    private String message;
+    private String errcode;
+    private String errmsg;
     private T data;
 
-    public Result(String code, String message, T data) {
-        this.code = code;
-        this.message = message;
+    public Result(String errcode, String errmsg, T data) {
+        this.errcode = errcode;
+        this.errmsg = errmsg;
         this.data = data;
     }
 
@@ -20,20 +20,20 @@ public class Result <T> {
         this(null);
     }
 
-    public String getCode() {
-        return code;
+    public String getErrcode() {
+        return errcode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setErrcode(String errcode) {
+        this.errcode = errcode;
     }
 
-    public String getMessage() {
-        return message;
+    public String getErrmsg() {
+        return errmsg;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setErrmsg(String errmsg) {
+        this.errmsg = errmsg;
     }
 
     public T getData() {
@@ -47,8 +47,8 @@ public class Result <T> {
     @Override
     public String toString() {
         return "Result{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
+                "errcode=" + errcode +
+                ", errmsg='" + errmsg + '\'' +
                 ", data=" + data +
                 '}';
     }

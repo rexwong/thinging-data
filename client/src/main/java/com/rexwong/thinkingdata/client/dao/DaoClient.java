@@ -29,9 +29,9 @@ public class DaoClient {
     @Resource
     private RestTemplate restTemplate;
 
-    public Area2CountryResult httpClient(String code) throws RestException {
+    public Country2AreaResult httpClient(String code) throws RestException {
         try {
-            ResponseEntity<Area2CountryResult> responseEntity = restTemplate.getForEntity(areaTocountry,Area2CountryResult.class,code);
+            ResponseEntity<Country2AreaResult> responseEntity = restTemplate.getForEntity(areaTocountry,Country2AreaResult.class,code);
             return responseEntity.getBody();
         } catch (Exception e) {
             log.error("Calling rest({}) error({})", RestClientHelper.getUrl(areaTocountry, code), e.getMessage());
