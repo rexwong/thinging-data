@@ -245,17 +245,15 @@ object DoubanRecommender {
       case (userID, recommendations) => {
         var recommendationStr = ""
         for (r <- recommendations) {
-          recommendationStr += r.product + ":" + bMoviesAndName.value.getOrElse(r.product, "") + ","
+          recommendationStr += r.product + ":" + bMoviesAndName.value.getOrElse(r.product, "") + "\t"
         }
-        if (recommendationStr.endsWith(","))
-          recommendationStr = recommendationStr.substring(0, recommendationStr.length - 1)
 
         (bReverseUserIDMap.value.get(userID).get, recommendationStr)
       }
     }
 
     //allRecommendations.saveAsTextFile(base + "result.csv")
-    allRecommendations.coalesce(1).sortByKey().saveAsTextFile(base + "result.csv")
+    allRecommendations.coalesce(1).sortByKey().saveAsTextFile(base + "result")
 
     unpersist(model)
   }
