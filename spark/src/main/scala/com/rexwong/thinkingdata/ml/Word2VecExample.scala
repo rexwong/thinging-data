@@ -41,15 +41,9 @@ object Word2VecExample {
       .builder
       .appName("Word2Vec example")
       .getOrCreate()
+
     val commentsData = spark.read.textFile("/user/hadoop/data/comments.txt").rdd
 
-    //    var seq = Seq[String]()
-    //    var data = commentsData.map(row => {
-    //      val lists = NLPTokenizer.segment(row)
-    //      lists.foreach((item: Term) => {
-    //        seq = seq :+ item.word
-    //      })
-    //    })
     val data = commentsData.map(row => {
       row.replaceAll("#", ",").wordSplit()
     })
@@ -61,12 +55,12 @@ object Word2VecExample {
       .setOutputCol("result")
       .setVectorSize(3)
       .setMinCount(0)
+
     val model = word2Vec.fit(documentDF)
 
     val result = model.transform(documentDF)
-//    result.collect().foreach { case Row(text: Seq[_], features: Vector) =>
-//      println(s"Text: [${text.mkString(", ")}] => \nVector: $features\n")
-//    }
+
+    result.show()
 
     spark.stop()
   }
