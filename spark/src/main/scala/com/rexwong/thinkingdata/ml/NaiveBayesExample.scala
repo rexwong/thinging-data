@@ -31,7 +31,7 @@ object NaiveBayesExample {
     import sc.implicits._
     val sentenceData = file.map {
       row =>
-        var data = row.split(",")
+        val data = row.split(",")
         RawDataRecord(data(0).toDouble, data(1))
     }
 

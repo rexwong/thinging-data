@@ -43,15 +43,9 @@ object TfIdfExample {
       .appName("TfIdfExample")
       .getOrCreate()
 
-//    val sentenceData =
-//      spark.read.textFile("/user/hadoop/data/comments.txt")
-//        .toDF("label", "sentence")
-
-    val sentenceData = spark.createDataFrame(Seq(
-      (0.0, "Hi I heard about Spark"),
-      (0.0, "I wish Java could use case classes"),
-      (1.0, "Logistic regression models are neat")
-    )).toDF("label", "sentence")
+    val sentenceData =
+      spark.read.textFile("/train/youku-douban-commit")
+    sentenceData.show(100)
 
     val tokenizer = new Tokenizer().setInputCol("sentence").setOutputCol("words")
     val wordsData = tokenizer.transform(sentenceData)

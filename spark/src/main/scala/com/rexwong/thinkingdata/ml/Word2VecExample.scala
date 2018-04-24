@@ -15,7 +15,6 @@
  * limitations under the License.
  */
 
-// scalastyle:off println
 package com.rexwong.thinkingdata.ml
 
 // $example on$

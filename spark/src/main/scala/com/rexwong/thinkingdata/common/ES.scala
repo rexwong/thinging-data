@@ -7,6 +7,7 @@ import grizzled.slf4j.Logger
 import scala.concurrent.duration._
 
 object ES {
+
   @transient lazy implicit val log: Logger = Logger[this.type]
 
   import com.sksamuel.elastic4s.ElasticsearchClientUri
